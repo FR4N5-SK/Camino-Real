@@ -29,7 +29,7 @@ function CardHotel({ item }) {
           </div>
           <div className="mb-3">
             <ul className="text-AzulC text-[12px] font-semibold flex gap-2 mb-2">
-              {JSON.parse(item.services).map((element, key) => (
+              {item.services.map((element, key) => (
                 <li key={key}>{element}</li>
               ))}
             </ul>
@@ -67,7 +67,7 @@ function CardHotel({ item }) {
               <p className={`text-[10px] text-AzulA font-semibold`}>
                 Por Persona
               </p>
-              <span className=" bg-Verde text-AzulA text-[10px] font-semibold me-2 px-2 py-1 rounded-sm">
+              <span className={`${item.review < 5 ? "bg-red-500" : (item.review < 7 ? "bg-amber-400" : "bg-Verde")} text-AzulA text-[10px] font-semibold me-2 px-2 py-1 rounded-sm`}>
                 {item.review}
               </span>
             </div>
@@ -106,7 +106,11 @@ function CardHotel({ item }) {
           openModal={modalDetails}
           setOpenModal={setModalDetails}
         />
-        <ModalReseñas openModal={modalReseña} setOpenModal={setModalReseña} />
+        <ModalReseñas
+          hotel={item}
+          openModal={modalReseña}
+          setOpenModal={setModalReseña}
+        />
         <ModalReserva
           item={item}
           oferta={"Ninguna"}

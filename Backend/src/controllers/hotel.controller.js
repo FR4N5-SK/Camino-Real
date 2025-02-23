@@ -2,6 +2,8 @@ import { deleteFile } from "../middleware/upload.js";
 import Hoteles from "../models/hotel.models.js";
 import Promos from "../models/promos.models.js";
 import Reservation from "../models/reservations.models.js";
+import jwt from 'jsonwebtoken';
+import User from "../models/users.models.js";
 
 class HotelController {
   // Agregar Hotel
@@ -42,6 +44,51 @@ class HotelController {
         await newHotel.save();
         res.status(201).json({ status: 201, message: 'Hotel agregado exitosamente', result: newHotel });
     } catch (error) {
+      res
+        .status(500)
+        .json({
+          status: 500,
+          message: "Error al crear el hotel: " + error.message,
+        });
+    }
+  }
+
+  // Agregar Reseña
+  async addReview(req, res) {
+    const {
+      description,
+      review,
+      id_hotel
+    } = req.body;
+    console.log(review)
+    console.log(description)
+    if (!review || !description || !id_hotel) {
+      return res
+        .status(400)
+        .json({ status: 400, message: "Todos los campos son obligatorios." });
+    }
+
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    try {
+        const hotel = await Hoteles.findById(id_hotel)
+        const user = await User.findById(decoded.id);
+        hotel.reviews.push({
+          description: description,
+          review: Number(review),
+          user: user.name + " " + user.lastname
+        })
+        let calificacion = 0
+        hotel.reviews.forEach(item => {
+          calificacion = calificacion + item.review
+        });
+        hotel.review = (calificacion / hotel.reviews.length).toFixed(1)
+        console.log(hotel.review)
+        await hotel.save();
+        res.status(201).json({ status: 201, message: 'Reseña agregado exitosamente', result: hotel, id_hotel: id_hotel });
+    } catch (error) {
+      console.log(error.message)
       res
         .status(500)
         .json({

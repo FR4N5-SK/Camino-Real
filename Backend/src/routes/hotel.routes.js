@@ -8,6 +8,10 @@ const router = express.Router();
 // Rutas agregar rutas turisticas
 router.post('/add', authMiddleware(['admin']), upload.single('image'), HotelController.addHotel);
 
+
+// Rutas agregar rutas turisticas
+router.post('/add/review', authMiddleware(['admin', 'user']), HotelController.addReview);
+
 // Ruta editar rutas turisticas
 router.put('/edit/:id', authMiddleware(['admin']), upload.single('image'), HotelController.editHotel);
 

@@ -19,7 +19,7 @@ function FiltroLocation({ data, setData, type }) {
           setData(hoteles)
         }
       } else {
-        const newState = data.filter((item) => item.location === values);
+        const newState = hoteles.filter((item) => item.location === values);
         setData(newState);
       }
       setLoader(false);

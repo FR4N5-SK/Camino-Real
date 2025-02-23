@@ -10,6 +10,7 @@ const hotelSchema = mongoose.Schema({
   review: {type: Number, default: 0},
   stars: {type: Number, required: true},
   image: { type: String, required: true },
+  reviews: { type: Array, require: true, default: []}
 });
 
 const Hotel = mongoose.model('hotel', hotelSchema);

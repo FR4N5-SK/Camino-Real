@@ -317,36 +317,76 @@ export function ContextoProvider(props) {
     });
   }
 
-    // Peticion a la api para agregar los productos
-    function peticionComprar(data) {
-      return new Promise((resolve, reject) => {
-        fetch(peticiones.comprar, {
-          mode: "cors",
-          method: "POST", // or 'PUT'
-          body: JSON.stringify(data),
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) => res.json())
-          .catch((error) => console.error("Error:", error))
-          .then((response) => {
-            if (response.status < 210 && response.status >= 200) {
-              alertConfirm(response.message);
-              resolve(true);
-            }
-            if (response.status < 410 && response.status >= 400) {
-              alertError(response.message);
-              resolve(false);
-            }
-            if (response.status < 510 && response.status >= 500) {
-              alertError(response.message);
-              resolve(false);
-            }
-          });
-      });
-    }
+  // Peticion a la api para agregar los productos
+  function peticionComprar(data) {
+    return new Promise((resolve, reject) => {
+      fetch(peticiones.comprar, {
+        mode: "cors",
+        method: "POST", // or 'PUT'
+        body: JSON.stringify(data),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .catch((error) => console.error("Error:", error))
+        .then((response) => {
+          if (response.status < 210 && response.status >= 200) {
+            alertConfirm(response.message);
+            resolve(true);
+          }
+          if (response.status < 410 && response.status >= 400) {
+            alertError(response.message);
+            resolve(false);
+          }
+          if (response.status < 510 && response.status >= 500) {
+            alertError(response.message);
+            resolve(false);
+          }
+        });
+    });
+  }
+
+  // Peticion a la api para agregar los productos
+  function peticionReview(data) {
+    return new Promise((resolve, reject) => {
+      fetch(peticiones.addReseña, {
+        mode: "cors",
+        method: "POST", // or 'PUT'
+        body: JSON.stringify(data),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .catch((error) => console.error("Error:", error))
+        .then((response) => {
+          if (response.status < 210 && response.status >= 200) {
+            const newStorage = [];
+            hoteles.map((item) => {
+              if (item._id === response.id_hotel) {
+                newStorage.push(response.result);
+              } else {
+                newStorage.push(item);
+              }
+            });
+            setHoteles(newStorage);
+            alertConfirm(response.message);
+            resolve(true);
+          }
+          if (response.status < 410 && response.status >= 400) {
+            alertError(response.message);
+            resolve(false);
+          }
+          if (response.status < 510 && response.status >= 500) {
+            alertError(response.message);
+            resolve(false);
+          }
+        });
+    });
+  }
 
   // Peticion a la api para eliminar los productos
   function deleteViaje(id) {
@@ -550,7 +590,8 @@ export function ContextoProvider(props) {
         deleteHotel,
         peticionEditHotel,
         peticionAddReserva,
-        peticionComprar
+        peticionComprar,
+        peticionReview
       }}
     >
       {props.children}

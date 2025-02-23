@@ -10,6 +10,7 @@ const endpoints = {
     allOfertas: "http://localhost:3081/api/promos/all",
     allUsers: "http://localhost:3081/api/users/all",
     addHotel: "http://localhost:3081/api/hotel/add",
+    addReseña: "http://localhost:3081/api/hotel/add/review",
     addOferta: "http://localhost:3081/api/promos/add",
     addViajes: "http://localhost:3081/api/routes/add",
     addCar: "http://localhost:3081/api/products/car/",

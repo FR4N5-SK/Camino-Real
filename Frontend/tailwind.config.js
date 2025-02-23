@@ -28,7 +28,12 @@ export default {
         'balco': "url('assets/balco.jpg')",
         'turismo': "url('assets/turismo.jpg')",
         'margarita': "url('assets/margarita.jpg')",
-        'plaza': "url('assets/plaza.jpg')"
+        'plaza': "url('assets/plaza.jpg')",
+        'deporte': "url('assets/deporte.jpg')",
+        'hidromasaje': "url('assets/hidromasaje.jpg')",
+        'piscina': "url('assets/Piscina.jpg')",
+        'gim': "url('assets/gim.jpg')"
+        
       }
     },
   },
