@@ -1,11 +1,12 @@
 import { FaLocationDot } from "react-icons/fa6";
 import { IoPerson } from "react-icons/io5";
 import { BsCalendarDate } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function FormFiltro() {
   return (
     <>
-      <form className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-col gap-2">
         <div class="flex border border-AzulA rounded-md hover:cursor-pointer">
           <span class="inline-flex items-center p-3 text-sm text-gray-900 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <FaLocationDot className="w-7 h-7 text-AzulA" />
@@ -24,8 +25,8 @@ function FormFiltro() {
             <p className="font-Inter text-AzulA text-sm">8 personas</p>
           </div>
         </div>
-        <button className="p-2 rounded-lg w-full font-medium text-sm bg-AzulC text-white hover:bg-AzulB transition-all duration-300">Buscar</button>
-      </form>
+        <button type="button" className="rounded-lg w-full font-medium text-sm bg-AzulC text-white hover:bg-AzulB transition-all duration-300"><Link className="w-full h-full flex justify-center p-2 " to={"/buscar-hoteles"}>Buscar</Link></button>
+      </div>
     </>
   );
 }

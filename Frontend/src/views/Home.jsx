@@ -7,6 +7,7 @@ import CarrouselOfertas from "../components/CarrouselOfertas";
 import Footer from "../components/Footer";
 import { useContext } from "react";
 import { Context } from "../context/Context";
+import { Link } from "react-router-dom";
 
 function Home() {
   const { token } = useContext(Context);
@@ -14,7 +15,7 @@ function Home() {
     <>
       <Navbar />
 
-      <main className="py-12 px-4 flex flex-col gap-8">
+      <main className="py-12 px-4 flex flex-col gap-8 md:gap-14 lg:gap-24">
         <section className="bg-hotel bg-cover bg-center bg-no-repeat w-full rounded-md ">
           <div className="w-full h-full px-3 py-8 flex flex-col gap-6 items-center rounded-md bg-black bg-opacity-50">
             <h2 className="text-white font-Inter font-bold text-3xl w-4/5">
@@ -26,13 +27,7 @@ function Home() {
           </div>
         </section>
 
-        {
-          token != "Invalid" ? (
-            <></>
-          ) : (
-            <CardLogin />
-          )
-        }
+        {token != "Invalid" ? <></> : <CardLogin />}
 
         <section className="w-full flex flex-col gap-4">
           <h3 className="font-Inter font-bold text-AzulA text-xl">
@@ -41,8 +36,8 @@ function Home() {
           <CarrouselServices />
         </section>
 
-        <section className="w-full flex flex-col gap-12 bg-Crema rounded-md font-Inter">
-          <div className="p-4">
+        <section className="w-full flex flex-col lg:flex-row gap-12 lg:gap-16 bg-Crema rounded-md font-Inter">
+          <div className="p-4 lg:w-full">
             <span class=" bg-black text-white text-xs font-semibold me-2 px-2.5 py-1.5 rounded-md">
               Nuevo
             </span>
@@ -62,11 +57,11 @@ function Home() {
             </button>
           </div>
 
-          <div className="bg-resort bg-center bg-cover relative flex justify-center w-full h-[250px] rounded-b-md">
+          <div className="bg-resort bg-center bg-cover relative flex justify-center w-full lg:w-[1/4] h-[250px] rounded-b-md lg:rounded-r-md lg:rounded-bl-none">
             <img
               src={cardPlata}
               alt="Tarjeta Platino"
-              className="absolute -top-14 w-28"
+              className="absolute -top-14 w-28 lg:top-16 lg:-left-14"
             />
           </div>
         </section>
@@ -83,12 +78,10 @@ function Home() {
                     Todas las ofertas deben minímo estar suscrito a CaminoReal
                   </p>
                 </div>
-                <button className="p-1.5 rounded-full w-full font-medium text-xs bg-white text-AzulC hover:text-white hover:bg-AzulB transition-all duration-300">
-                  Ver todas las ofertas
+                <button className=" rounded-full w-full font-medium text-xs bg-white text-AzulC hover:text-white hover:bg-AzulB transition-all duration-300">
+                  <Link className="w-full h-full flex justify-center p-1.5" to={"/ofertas-promociones"}>Ver todas las ofertas</Link>
                 </button>
               </div>
-
-              <CarrouselOfertas />
             </div>
           </div>
         </section>

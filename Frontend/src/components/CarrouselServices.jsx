@@ -4,7 +4,7 @@ import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
 
 function CarrouselServices() {
   return (
-    <div className="h-60 w-full">
+    <div className="h-60 sm:h-[300px] md:h-[400px]  lg:h-[500px] w-full">
       <Carousel
         indicators={false}
         leftControl={<FaArrowCircleLeft className="text-xl text-AzulA" />}
