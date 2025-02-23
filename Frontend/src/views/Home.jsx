@@ -52,9 +52,15 @@ function Home() {
               </p>
               <p>El crédito OneKeyCash no se puede canjear por efectivo.</p>
             </div>
-            <button className="p-1.5 rounded-full w-full font-medium border border-black text-xs text-AzulC hover:border-AzulB hover:text-white hover:bg-AzulB transition-all duration-300">
-              Iniciar Sesion
-            </button>
+            {token != "Invalid" ? (
+              <></>
+            ) : (
+              <button className="flex rounded-full w-full font-medium border border-black text-xs text-AzulC hover:border-AzulB hover:text-white hover:bg-AzulB transition-all duration-300">
+                <Link to={"/login"} className="p-1.5 w-full h-full">
+                  Iniciar Sesion
+                </Link>
+              </button>
+            )}
           </div>
 
           <div className="bg-resort bg-center bg-cover relative flex justify-center w-full lg:w-[1/4] h-[250px] rounded-b-md lg:rounded-r-md lg:rounded-bl-none">
@@ -79,7 +85,12 @@ function Home() {
                   </p>
                 </div>
                 <button className=" rounded-full w-full font-medium text-xs bg-white text-AzulC hover:text-white hover:bg-AzulB transition-all duration-300">
-                  <Link className="w-full h-full flex justify-center p-1.5" to={"/ofertas-promociones"}>Ver todas las ofertas</Link>
+                  <Link
+                    className="w-full h-full flex justify-center p-1.5"
+                    to={"/ofertas-promociones"}
+                  >
+                    Ver todas las ofertas
+                  </Link>
                 </button>
               </div>
             </div>

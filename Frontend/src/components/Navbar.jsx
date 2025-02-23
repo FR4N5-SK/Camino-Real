@@ -82,7 +82,7 @@ function Navbar() {
                 {token != "Invalid" ? (
                   <>
                     <li>
-                      <a onClick={logout} className="block py-2 px-3 lg:p-0 text-AzulA hover:bg-RojoA hover:text-white rounded-sm transition-all duration-300 lg:hover:bg-transparent lg:border-0 lg:hover:text-RojoA">
+                      <a onClick={logout} className="hover:cursor-pointer block py-2 px-3 lg:p-0 text-AzulA hover:bg-RojoA hover:text-white rounded-sm transition-all duration-300 lg:hover:bg-transparent lg:border-0 lg:hover:text-RojoA">
                         Logout
                       </a>
                     </li>
