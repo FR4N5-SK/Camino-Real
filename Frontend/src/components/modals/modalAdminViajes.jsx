@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Pagination } from "../Pagination";
 import { AgregarViaje } from "./AgregarViaje";
 import { Context } from "../../context/Context";
+import CardTurismo from "../cards/CardTurismo";
 
 export function ModalAdminViajes({ openModal, setOpenModal }) {
   const { loader, viajes, deleteViaje } = useContext(Context);
@@ -11,6 +12,8 @@ export function ModalAdminViajes({ openModal, setOpenModal }) {
   const [pagina, setPagina] = useState(1);
   const [porPagina, setPorPagina] = useState(10);
   const [data, setData] = useState([]);
+  const [mostrar, setMostrar] = useState(false);
+  const [element, setElement] = useState({})
 
   const maximo = Math.ceil(data.length / porPagina);
 
@@ -69,14 +72,16 @@ export function ModalAdminViajes({ openModal, setOpenModal }) {
                         <Table.Cell>{item.location}</Table.Cell>
                         <Table.Cell>${item.price}</Table.Cell>
                         <Table.Cell>
-                          <a
-                            
-                            className="hover:cursor-pointer mr-2 font-medium text-green-800 hover:underline"
-                          >
+                          <a onClick={
+                            e => {
+                              setElement(item)
+                              setMostrar(!mostrar);
+                            }
+                          } className="hover:cursor-pointer mr-2 font-medium text-green-800 hover:underline">
                             Mostrar
                           </a>
                           <a
-                            onClick={e => (deleteViaje(item._id))}
+                            onClick={(e) => deleteViaje(item._id)}
                             className="hover:cursor-pointer font-medium text-RojoA hover:underline"
                           >
                             Eliminar
@@ -93,6 +98,9 @@ export function ModalAdminViajes({ openModal, setOpenModal }) {
           ) : (
             <Pagination pagina={pagina} setPagina={setPagina} maximo={maximo} />
           )}
+          <div className="w-full flex justify-center mt-8 mb-6">
+            {mostrar ? <CardTurismo item={element} /> : <></>}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <button

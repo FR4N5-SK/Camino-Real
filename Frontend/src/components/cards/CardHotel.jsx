@@ -28,7 +28,7 @@ function CardHotel({ item }) {
             </h6>
           </div>
           <div className="mb-3">
-            <ul className="text-AzulC text-[12px] font-semibold flex gap-2 mb-2">
+            <ul className="text-AzulC text-[12px] font-semibold flex flex-wrap gap-2 mb-2">
               {item.services.map((element, key) => (
                 <li key={key}>{element}</li>
               ))}

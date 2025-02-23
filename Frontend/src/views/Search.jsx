@@ -13,7 +13,7 @@ function Search() {
     const { token, loader, peticionAllHoteles, hoteles } = useContext(Context);
 
     const [pagina, setPagina] = useState(1);
-    const [porPagina, setPorPagina] = useState(12);
+    const [porPagina, setPorPagina] = useState(10);
     const [data, setData] = useState([])
   
     const maximo = Math.ceil(data.length / porPagina);
