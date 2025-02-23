@@ -19,8 +19,16 @@ function FiltroLocation({ data, setData, type }) {
           setData(hoteles)
         }
       } else {
-        const newState = hoteles.filter((item) => item.location === values);
-        setData(newState);
+        if (type === "viaje") {
+          const newState = viajes.filter((item) => item.location === values);
+          setData(newState);
+        }else if (type === "oferta"){
+          const newState = data.filter((item) => item.location === values);
+          setData(newState);
+        } else {
+          const newState = hoteles.filter((item) => item.location === values);
+          setData(newState);
+        }
       }
       setLoader(false);
     }, 1000);

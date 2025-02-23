@@ -123,8 +123,7 @@ class ReservationController {
           .status(201)
           .json({
             status: 201,
-            message: "Reserva creada exitosamente",
-            result: newReserva,
+            message: "Compra Realizada exitosamente",
           });
       } catch (error) {
         res.status(500).json({
